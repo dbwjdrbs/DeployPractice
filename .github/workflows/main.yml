@@ -54,4 +54,4 @@ jobs:
               'sudo docker tag wjdrbs/spring-cicd:${GITHUB_SHA::7} spring-cicd',
               'sudo docker run -d --name server -p 8080:8080 spring-cicd'
             ]" \
-            --output tex
+            --output text
