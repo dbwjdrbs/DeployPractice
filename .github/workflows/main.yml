@@ -42,16 +42,16 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ap-northeast-2
         run: |
-          aws ssm send-command \\
-            --instance-ids i-055fa46b37bde7a1b \\
-            --document-name "AWS-RunShellScript" \\
+          aws ssm send-command \
+            --instance-ids i-055fa46b37bde7a1b \
+            --document-name "AWS-RunShellScript" \
             --parameters "commands=[
-              'if sudo docker ps -a --format \\\\'{{.Names}}\\\\' | grep -q \\'^server$\\\\'; then',
+              'if sudo docker ps -a --format \\'{{.Names}}\\' | grep -q \\'^server$\\'; then',
               '  sudo docker stop server',
               '  sudo docker rm server',
               'fi',
               'sudo docker pull wjdrbs/spring-cicd:${GITHUB_SHA::7}',
               'sudo docker tag wjdrbs/spring-cicd:${GITHUB_SHA::7} spring-cicd',
               'sudo docker run -d --name server -p 8080:8080 spring-cicd'
-            ]" \\
-            --output text
+            ]" \
+            --output tex
